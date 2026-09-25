@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Glass Website</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style2.css" />
+    </head>
+    <body>
+       <main> 
+        <section class="glass">
+            <div id="backdrop" class="hidden"></div>
+            <div class="dashboard">
+            <button class="hamburger">☰</button> 
+                <div class="user">
+                    <img src="/images/waldo-removebg-preview.png" alt="">
+                    <h3></h3>
+                    <p>Pro Member</p>
+                </div>
+                <div class="links">
+                    <div class="link">
+                        <img src="images/twitch.png" alt="">
+                        <h2>Streams</h2>
+                    </div>
+                    <div class="link">
+                        <img src="images/steam.png" alt="">
+                        <h2>Games</h2>
+                    </div>
+                    <div class="link">
+                        <img src="images/upcoming.png" alt="">
+                        <h2>New</h2>
+                    </div>
+                    <div class="link">
+                        <img src="images/library.png" alt="">
+                        <h2>Library</h2>
+                    </div>
+                </div>
+                <div class="pro">
+                    <h2>Member</h2>
+                    <svg 
+                        class="diamond-icon" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 512 512" 
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <g fill="currentColor" transform="translate(42.666667, 85.333333)">
+                    <path d="M341.333333,1.42108547e-14 L426.666667,106.666667 L213.333333,394.666667 L7.10542736e-15,106.666667 L85.3333333,1.42108547e-14 L341.333333,1.42108547e-14 Z M262.563,122.666 L164.103,122.666 L213.333333,314.666667 L262.563,122.666 Z M127.703,122.666 L64.539,122.666 L184.306,302.462 L127.703,122.666 Z M362.105,122.666 L298.962,122.666 L242.395,302.349 L362.105,122.666 Z M168.889,42.666 L105.813333,42.6666667 L67.404,90.666 L134.222,90.666 L168.889,42.666 Z M224,42.666 L202.666,42.666 L170.667,90.666 L255.999,90.666 L224,42.666 Z M320.832,42.6666667 L257.777,42.666 L292.443,90.666 L359.241,90.666 L320.832,42.6666667 Z" />
+                    </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="games">
+                <div class="status">
+                    <h1>Active Games</h1>
+                    <div class="search-row">
+                        <input type="text" placeholder="Enter to filter">
+                        <div class="input-wrapper" id="addGameBtn">
+                            <img src="images/icons8-search-50.png" class="search-icon">
+                            <input type="text" placeholder="Add a game..." readonly> 
+                        </div>
+                        <form id="addGameForm" class="hidden">
+                            <input type="text" id="gameName" placeholder="gamename" required>
+                            <input type="text" id="platform" placeholder="platform">
+                            <button type="submit">
+                                Add Games
+                            </button>
+                        </form>
+                        <p id="gameMessage" style="font-size: 0.85rem; display:none;"></p>
+                        <!-- <button id="addGameBtn" class="addGameBtn">
+                            <img src="images/icons8-search-50.png" class="search-icon">
+                        </button> -->
+                        <div class="cart-wrapper">
+                            <img src="images/cart.png" class="cart-btn" id="cartIcon">
+                            <span id="cartBadge" class="cart-badge hidden">0</span>
+
+                            <div id="cartDropdown" class="cart-dropdown hidden">
+                                <div class="cart-header">
+                                    <button id="removeAll">Remove all</button>
+                                </div>
+                                <ul id="cartList"></ul>
+                                <div id="cartItems" class="cart-items">
+                                    <!-- <h4>Cart empty</h4> -->
+                                    <p>Cart empty!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-wrapper">
+                            <img src="images/notification.png" class="cart-btn" id="notifIcon">
+                            <span id="notifBadge" class="notif-badge hidden">0</span>
+                        
+                            <div id="notifDropdown" class="notif-dropdown hidden">
+                                <div class="notif-header">
+                                    <h4>Notifications</h4>
+                                    <button id="clearAllNotifs">Clear all</button>
+                                </div>
+                                <ul id="notifList"></ul>
+                                <div id="emptyNotif" class="empty-notif hidden">
+                                    <span class="empty-sparkle">✨</span>
+                                    <p>All caught up!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="newDiv">
+                    <p id="trending">Trending<img src="images/fire.png" alt="" class="fire-icon"></p>
+                    <div class="hotGames">
+
+                        <div class="hot">
+                            <img src="images/action.png" alt="">
+                            <p>Action</p>   
+                        </div>
+                        <div class="hot">
+                            <img src="images/adventure.png" alt="">
+                            <p>Adventure</p>
+                        </div>
+                        <div class="hot">
+                            <img src="images/roleplaying.png" alt="">
+                            <p>Role-playing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="games-list"></div>
+               
+            </div>
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </section>
+       </main>
+       <script src="index.js"></script>
+    </body>
+</html>

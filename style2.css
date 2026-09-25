@@ -1,0 +1,1007 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+}
+
+h2 {
+    color: #34495e;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+p {
+    color: #4a5568;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.game-title{
+    color: #2c3e50;
+}
+.game-os{
+    color: #4a5568;
+}
+
+h3 {
+    color: #34495e;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dde6ed, #c9d6df, #b8c6d6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass {
+    min-height: 80vh;
+    width: 70%;
+    max-width: 2500px;
+    position: relative;
+    background: linear-gradient(50deg, #eef2f6, #dbe4ec, #c9d6df);
+    
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    display: flex;
+}
+
+/* .circle1,
+.circle2 {
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.521),
+        rgba(255, 255, 255, 0.062)
+    );
+    height: 15rem;
+    width: 15rem;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -2;
+} */
+
+.circle1 {
+    top: -15%;
+    right: -8%;
+}
+
+.circle2 {
+    bottom: -15%;
+    left: -8%;
+}
+
+#backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9; /* addGameForm is z-index: 10, so this sits just below it */
+}
+
+.dashboard {
+    flex: none;
+    width: 130px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.6),
+        rgba(200, 215, 230, 0.5)
+    );
+    border-radius: 2rem;
+    padding-bottom: 5rem;
+    position: relative;
+}
+
+/* .dashboard:hover {
+    width: 200px;
+} */
+
+.link h2,
+.link h3,
+.user p {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s, max-width 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+    display: none;
+}
+
+/* .dashboard:hover .link h2,
+.dashboard:hover .user h3,
+.dashboard:hover .user p {
+    opacity: 1;
+    max-width: 200px;
+    display: flex;
+} */
+
+.link {
+    display: flex;
+    margin: 0.3rem 0rem;
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.link h2 {
+    padding: 0rem 1rem;
+}
+
+/* .pro sits at the bottom of .dashboard, partially outside */
+.pro {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.25),
+        rgba(255, 140, 0, 0.1)
+    );
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    padding: 1rem;
+    position: relative;
+    bottom: -10%;
+    left: 40%;
+    transform: translateX(-50%);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pro h2 {
+    /*display: none;
+    width: 60%;
+    color: #c04f4f;
+    font-weight: 600;
+    opacity: 1;*/
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease 0.1s, max-width 0.3s ease;
+
+}
+
+/* .dashboard:hover .pro h2 {
+    /*display: block;
+    opacity: 1;
+    max-width: 200px;
+} */
+
+/* crown image pokes up out of the box */
+.pro img {
+    width: 80px;
+    position: static;
+    top: 10px;
+    right: 10%;
+    filter: none;
+    opacity: 0.85;
+}
+
+/*pro shenanigans*/
+.diamond-icon {
+    color: #FFFFFF; /* Makes it pure white */
+    /* color: #FFD700; <-- Or make it gold! */
+    
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    transition: color 0.2s ease;
+  }
+  
+  /* Optional hover state */
+.pro:hover .diamond-icon {
+    color: #FFD700; /* Turns gold on hover */
+}
+
+/* .games scrolls internally so cards don't overflow the card */
+.games {
+    flex: 2;
+    display: flex;
+    border-radius: 2rem;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto; /* cards scroll inside this panel */
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.5),
+        rgba(210, 225, 240, 0.4)
+    );
+    
+    
+}
+
+.status {
+    margin-bottom: 1.5rem;
+}
+
+.status input {
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.9),
+        rgba(230, 238, 245, 0.7)
+    );
+    border: none;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 70px;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.status input {
+    color: #2c3e50;
+    font-weight: 500;
+}
+.status input::placeholder {
+    color: rgba(74, 85, 104, 0.6);
+}
+
+.search-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    width: auto;
+}
+
+/* hidden form
+form {
+    gap: 1rem;
+    flex-direction: column;
+    border-radius: 1rem;
+    width: 100%;
+    background: gray;
+} */
+
+/* #addGameBtn {
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.3)
+        ) !important;
+    width: 0 !important;
+    
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+} */
+
+#addGameForm input {
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+}
+
+#addGameForm {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;      
+    right: 0;        
+    width: min(100%, 280px);
+       
+    margin: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+
+#addGameForm {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: stretch;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(180, 195, 210, 0.5);
+    backdrop-filter: blur(16px);
+    padding: 1rem;
+    border-radius: 1rem;
+    
+}
+.hidden {
+    display: none !important;
+}
+
+
+form input::placeholder {
+    color: rgba(7, 6, 6, 0.6);
+}
+
+
+button {
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #00c9a7, #00b4d8);
+    color: #0a0a1a;
+    font-weight: 700;
+    /*background-color: #2a5c6b;
+    color: white;*/
+    width: 6rem;
+    border: none;
+    border-radius: 1rem;
+    
+    height: 30px;
+    cursor: pointer;
+   
+}
+
+form button {
+    display: none;
+}
+
+.cart-btn {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    filter: none;
+    opacity: 0.85;
+    flex-shrink: 0;
+}
+
+.search-icon {
+    position: static;
+    cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: none;
+    opacity: 0.85;
+    margin-left: 0.75rem;
+}
+
+/* was .card in your file — typo, your HTML uses .cards */
+.cards {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 1rem;
+    margin: 0.5rem 0rem;
+    padding: 0.8rem;
+    box-shadow: 6px 6px 20px rgba(180, 195, 210, 0.4);
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    height: 13rem;
+    position: relative;
+}
+
+.delete-btn {
+    cursor: pointer;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 1000;
+    background: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: rgb(194, 19, 19);
+    transition-duration:color 0.2s ease, background 0.2s ease;
+}
+
+.delete-btn:hover {
+    color: #ff8080;
+    background: rgba(255, 77, 77, 0.15);
+}
+
+.progress{
+    background: rgba(180, 195, 210, 0.5);
+    width: 100%;
+    height: 12px;
+    border-radius: 2rem;
+    /*position: relative;
+    overflow: hidden;*/
+}
+/*.progress::after {
+    content: "";
+    width: 16%;
+    height: 12px;
+    background: rgb(236, 236, 236);
+    position: absolute;
+    left: 80%;
+}*/
+
+.progress-fill {
+    height: 100%;
+    border-radius: 2rem;
+    background: linear-gradient(
+        to right,
+        #00c9a7,
+        #00b4d8
+        /*rgba(65, 147, 158, 0.7),
+        rgba(44, 49, 51, 0.699)*/
+    );
+}
+
+.cards img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+.card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.percentage {
+    /*color: #00c9a7;
+    font-weight: 500;
+    opacity: 1;*/
+    font-size: xx-large;
+    font-weight: bold;
+    background: linear-gradient(to right top, #00c9a7, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.dashboard.fullView {
+    width: 300px;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #293a41;
+    font-weight: bolder;
+    padding-bottom: 2rem;
+    display: none;
+}
+
+.link img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: none;
+    opacity: 0.85;
+}
+
+.user img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    border-color: black;
+}
+
+/*.progress {
+    background: red;
+}*/
+
+.circle1 {
+    animation: drift1 12s ease-in-out infinite alternate;
+}
+.circle2 {
+    animation: drift2 14s ease-in-out infinite alternate;
+}
+@keyframes drift1 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-15px, 20px); }
+}
+@keyframes drift2 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(15px, -20px); }
+}
+
+.newDiv {
+    gap: 1rem;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.5),
+        rgba(200, 215, 230, 0.5)
+    );
+    position: relative;
+    border-radius: 1rem;
+
+}
+
+#trending {
+    font-size: 3rem;
+    text-align: center;
+    color: #34495e;
+}
+
+.fire-icon {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.hotGames {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(180, 200, 220, 0.4);
+    border: 1px solid rgba(150, 170, 190, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.hot{
+    flex: 1 1 0;
+    text-align: center;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(180, 195, 210, 0.4);
+    padding: 0.5rem;
+    backdrop-filter: blur(16px);
+    min-width: 0;
+}
+
+.hot p {
+    margin: 0.5rem 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.newDiv img:not(.fire-icon) {
+    width: 100%;
+    border-radius: 0.5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    object-position: center 20%;
+}
+
+/* spaghetti code */
+.input-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 120px;
+    align-items: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(180, 195, 210, 0.5);
+    border-radius: 2rem;
+    padding: 0 0.5rem;
+}
+
+.input-wrapper input {
+    border: none;
+    background: transparent;
+    flex: 1;
+    padding-left: 2.5rem;
+    color: inherit;
+    outline: none;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 600px) {
+    .glass {
+        width: 100%;
+        flex-direction: column;
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .link {
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    .circle1, .circle2 {
+        display: none;
+    }
+
+    .dashboard {
+        border-radius: 1rem;
+    }
+}
+
+.notif-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff4d4d;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.notif-badge.pulse {
+    animation: badgePulse 0.3s ease;
+}
+
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.notif-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 280px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(230, 238, 245, 0.7));
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(180, 195, 210, 0.5);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(180, 195, 210, 0.4);
+}
+
+.notif-header h4 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.notif-header button {
+    background: none;
+    color: #4a5568;
+    font-size: 0.75rem;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+#notifList {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.notif-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+.notif-item button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.notif-item button:hover {
+    color: #ff4d4d;
+}
+
+
+.empty-notif {
+    text-align: center;
+    padding: 1rem 0;
+    color: #4a5568;
+    font-size: 0.85rem;
+}
+
+.empty-sparkle {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.cart-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff4d4d;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+
+.cart-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 280px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(230, 238, 245, 0.7));
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(180, 195, 210, 0.5);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(180, 195, 210, 0.4);
+}
+
+.cart-header h4 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.cart-header button {
+    background: none;
+    color: #4a5568;
+    font-size: 0.75rem;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+#cartList {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+.cart-item button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.cart-item button:hover {
+    color: #ff4d4d;
+}
+
+
+.empty-cart {
+    text-align: center;
+    padding: 1rem 0;
+    color: #4a5568;
+    font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+    .glass {
+        width: 100%;
+        flex-direction: column;
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    /* Dashboard becomes a horizontal top bar instead of a tall sidebar */
+    .dashboard {
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 0.75rem;
+        justify-content: space-between;
+        overflow-x: auto;
+    }
+
+    .dashboard:hover {
+        width: 100%; /* cancel the desktop hover-expand behavior */
+    }
+
+    .user {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .user img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .link {
+        margin: 0;
+        padding: 0.25rem;
+    }
+
+    .link img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Text labels that only reveal on hover don't make sense on mobile (no hover) */
+    .link h2,
+    .user h3,
+    .user p {
+        display: none;
+    }
+
+    .status h1 {
+        font-size: 1.75rem;
+    }
+
+    .pro {
+        display: none; /* or restyle separately if you want it visible */
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .circle1, .circle2 {
+        display: none;
+    }
+
+    /* Games area */
+    .search-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .status input,
+    .input-wrapper {
+        width: 100%;
+    }
+
+    .hotGames {
+        flex-direction: row;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+        height: auto;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .cards img {
+        
+        height: 100%;
+    }
+
+    .card-info h2 {
+        font-size: 1rem;
+    }
+
+    #trending {
+        font-size: 1.5rem;
+    }
+    
+    .percentage {
+        font-size: 1.2rem;
+    }
+    .percentage {
+        position: absolute;
+        top: 40px;
+        right: 16px; /* left of the delete button, which sits at right: 10px */
+        font-size: 1.2rem;
+    }
+
+    .card-info {
+        width: 100%;
+        padding-right: 2rem; /* keep text from running under percentage/delete-btn */
+    }
+
+    .game-title {
+        font-size: smaller;
+    }
+
+    
+    .hotGames {
+        gap: 0.5rem;
+    }
+
+    .search-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .status input {
+        flex: 1 1 100%; /* forces it onto its own full-width row */
+    }
+    
+    .input-wrapper {
+        flex: 1; /* shares remaining row space with icons */
+    }
+}

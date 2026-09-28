@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/games`, {
+            const response = await fetch(`/games`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch Notifications
     function loadNotifications() {
-        fetch('http://127.0.0.1:5000/notifications', { credentials: 'include' })
+        fetch('/notifications', { credentials: 'include' })
             .then(res => res.ok ? res.json() : null)
             .then(notifications => {
                 if (!notifications) return;
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     notifList.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {
             const notifId = e.target.dataset.id;
-            fetch(`http://127.0.0.1:5000/notifications/${notifId}`, {
+            fetch(`/notifications/${notifId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(res => {
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clear All Notifications
     clearAllNotifs.addEventListener('click', () => {
-        fetch('http://127.0.0.1:5000/notifications', {
+        fetch('/notifications', {
             method: 'DELETE',
             credentials: 'include'
         }).then(res => {
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch Cart
     async function loadCart() {
         try {
-            const response = await fetch('http://127.0.0.1:5000/cart', { credentials: 'include' });
+            const response = await fetch('/cart', { credentials: 'include' });
             if (!response.ok) return;
 
             const items = await response.json();
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cartList.addEventListener('click', (e) => {
             if (e.target.classList.contains('cart-delete-btn')) {
                 const itemId = e.target.dataset.id;
-                fetch(`http://127.0.0.1:5000/cart/${itemId}`, {
+                fetch(`/cart/${itemId}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 }).then(res => {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear All Cart Items
     if (clearList) {
         clearList.addEventListener('click', () => {
-            fetch('http://127.0.0.1:5000/cart', {
+            fetch('/cart', {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(res => {
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch Games
     function loadGames() {
-        fetch('http://127.0.0.1:5000/games', { credentials: 'include' })
+        fetch('/games', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     window.location.href = 'loginpage.html';
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.delete-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const gameId = this.dataset.id;
-                        fetch(`http://127.0.0.1:5000/games/${gameId}`, {
+                        fetch(`/games/${gameId}`, {
                             method: 'DELETE',
                             credentials: 'include',
                         })
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch User Profile Info
     function loadUserInfo() {
-        fetch(`http://127.0.0.1:5000/whoami`, { credentials: 'include' })
+        fetch(`/whoami`, { credentials: 'include' })
             .then(response => response.json())
             .then(data => {
                 const nameDisplay = document.querySelector('.user h3');

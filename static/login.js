@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Choose endpoint based on current mode
         const endpoint = isLoginMode ? '/login' : '/register';
-        const url = `http://127.0.0.1:5000${endpoint}`;
+        const url = endpoint;
 
         try {
             const response = await fetch(url, {

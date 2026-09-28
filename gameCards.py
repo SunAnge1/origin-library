@@ -8,7 +8,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Allows cookie to persist on navigation
 app.config['SESSION_COOKIE_SECURE'] = False     # Set to True only if using HTTPS
@@ -289,6 +289,10 @@ class GameDetail(Resource):
         return {"message": "Game deleted"}, 200
 
 api.add_resource(GameDetail, "/games/<int:game_id>")
+
+@app.route('/')
+def home():
+    return app.send_static_file('loginpage.html')
 
 with app.app_context():
     db.create_all()
